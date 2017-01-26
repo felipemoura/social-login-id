@@ -41,6 +41,7 @@ strong {
 }
 
 .jumbotron {
+  visibility: hidden;
   background-color: white;
   margin:auto; 
   padding: 70px 0; 

@@ -9,7 +9,7 @@
 
 <div class="container">
   <div class="vertical-center-row">
-      <div class="jumbotron animated fadeInLeft">
+      <div class="jumbotron">
 
         <h2>Success Login</h2>
 
@@ -78,6 +78,8 @@ $(document).ready(function (){
         }
 
         document.getElementById('myImage').src = data.picture_url;
+        $('.jumbotron').addClass('animated fadeInLeft');
+        $('.jumbotron').css('visibility', 'visible');
     });
 
 
