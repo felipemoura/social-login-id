@@ -63,6 +63,7 @@ app.get('/info', function(req,res) {
 	});
 });
 
+
 // LOGOUT ==============================
 app.post('/logout',function(req,res) {
 	req.session.destroy(function(err) {
