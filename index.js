@@ -26,27 +26,32 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 // variables
-var token = "";
 var page = "https://api-staging.socialidnow.com/v1/marketing/login/info?api_secret=";
 var secret = "24979348df8f970ce19849ad861e215afa8a582f6e2f28f99b549da585e12bfb";
 var middle = "&token=";
 var fields = "&fields=birthday,gender,name,location";
-var info = [];
+// session
+var sess;
 
 // Home
 app.get('/',function(req,res){
+	sess = req.session;
 	res.render('pages/index.ejs'); // load the index.ejs file
 });
 
 // Post login
 app.post('/login', function(req, res) {
-	token = req.body.token;
+	sess = req.session;
+	sess.token = req.body.token;
+
 	res.send('done');
 });
 
 // Login page with info
 app.get('/login', function(req, res) {
-	if (token === "") {
+	sess = req.session;
+
+	if (sess.token === "") {
 		res.redirect('/')
 	} else {
     	res.render('pages/logged.ejs'); // load the index.ejs file   
@@ -54,12 +59,14 @@ app.get('/login', function(req, res) {
 });
 
 app.get('/info', function(req,res) {
-	var options = { url: page+secret+middle+token+fields, include: false };
+	sess = req.session;
+
+	var options = { url: page+secret+middle+sess.token+fields, include: false };
 
 	curl.request(options, function (err, parts) {
 	    parts = parts.split('\r\n');
-	    info = JSON.parse(parts.pop());
-		res.send(info);
+	    sess.info = JSON.parse(parts.pop());
+		res.send(sess.info);
 	});
 });
 
@@ -70,7 +77,6 @@ app.post('/logout',function(req,res) {
 	  if(err) {
 	    console.log(err);
 	  } else {
-	  	token = "";
 	    res.redirect('/');
 	  }
 	})
