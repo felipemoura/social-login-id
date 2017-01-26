@@ -1,60 +1,92 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<% include ../partials/header.ejs %>
-	
-	<title>Social-ID Marketing Platform</title>
+    <% include ../partials/header.ejs %>
+
+    <title>Social-ID Marketing Platform</title>
 </head>
 <body>
 
-
-<!-- Init  -->
 <div class="container">
   <div class="vertical-center-row">
       <div class="jumbotron">
 
         <h2>Success Login</h2>
 
-        <img src="" class="img-responsive center-block" alt="Profile Picture">
+        <img id="myImage" src="" class="img-responsive center-block" alt="Profile Picture">
 
         <div class="row info">
 
-        	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem">
-        		<strong>Nome</strong>
-        	</div>
-        	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem">
-        		<strong>e-mail</strong>
-        	</div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem">
+                <strong>Nome</strong>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem">
+                <strong>e-mail</strong>
+            </div>
 
-        	<div id="name" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem"></div>
-        	<div id="email" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem"></div>
+            <div id="name" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem"></div>
+            <div id="email" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem"></div>
 
-        	<br>
+            <br>
             <br>
 
-        	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem">
-        		<strong>Sexo</strong>
-        	</div>
-        	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem">
-        		<strong>Localização</strong>
-        	</div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem">
+                <strong>Sexo</strong>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem">
+                <strong>Localização</strong>
+            </div>
 
-        	<div id="sex" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem"></div>
-        	<div id="location" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem"></div>
-
-            <button id="logout" type="button" value="submit" class="btn btn-danger btn-block">Log out</button>
+            <div id="sex" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem"></div>
+            <div id="location" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem"></div>
         </div>
+
+        <button id="logout" type="button" value="submit" class="btn btn-danger btn-block">Log out</button>
+    
     </div>
   </div>
 </div>
 
 
 <script>
+$(document).ready(function (){    
+
+    // get info on the server
+    $.get('/info',function(data){   
+        if (data.name === undefined || data.name === null) {
+            $('#name').append('No Name found');  
+        } else {
+            $('#name').append(data.name);  
+        }
+
+        if (data.email === undefined || data.email === null) {
+            $('#email').append('No email found');  
+        } else {
+            $('#email').append(data.email);  
+        }
+
+        if (data.profile.gender === undefined || data.profile.gender === null) {
+            $('#sex').append('No sex found');  
+        } else {
+            $('#sex').append(data.profile.gender);  
+        }
+
+        if (data.location === undefined || data.location === null) {
+            $('#location').append('No location found');  
+        } else {
+            $('#location').append(data.location);  
+        }
+
+        document.getElementById('myImage').src = data.picture_url;
+    });
+
+    // loggout
     $('#logout').on('click', function() {
-        $.post("/logout").then(function(data) {
+        $.post('/logout').then(function(data) {
             window.location = data.redirectUrl;
         });
     });
+});
 </script>
 
 

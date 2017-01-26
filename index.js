@@ -2,6 +2,7 @@
 var express 	= require('express');
 var session 	= require('express-session');
 var bodyParser = require('body-parser');
+var curl 		= require('curlrequest');
 var app 		= express();
 
 app.set('port', (process.env.PORT || 5000));
