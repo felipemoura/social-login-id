@@ -51,7 +51,6 @@
 <script>
 $(document).ready(function (){    
 
-
     // get info on the server
     $.get('/info',function(data){   
         if (data.name === undefined || data.name === null) {
@@ -81,9 +80,11 @@ $(document).ready(function (){
         document.getElementById('myImage').src = data.picture_url;
     });
 
+
     // loggout
     $('#logout').on('click', function() {
-        $('.jumbotron').addClass('animated fadeOutRight');
+        $('.jumbotron').addClass('fadeOutRight');
+
         $.post('/logout').then(function(data) {
             window.location = data.redirectUrl;
         });

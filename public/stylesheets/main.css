@@ -1,6 +1,7 @@
 body {
-  background-color: #43A047;
+  background-color: #5641db;
   font-family: "Lato", "Lucida Grande","Lucida Sans Unicode", Tahoma, Sans-Serif;
+  background-image: linear-gradient(-60deg, #5641db 0%, #1f86ef 100%);
 }
 
 html, body, .container {
@@ -29,8 +30,8 @@ img {
 }
 
 .elem {
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-top: 7px;
+  margin-bottom: 7px;
   text-align: left;
   font-weight: 300;
 }
@@ -40,6 +41,7 @@ strong {
 }
 
 .jumbotron {
+  background-color: white;
   margin:auto; 
   padding: 70px 0; 
   width: 50%;
@@ -56,7 +58,6 @@ h1 {
 }
 
 h2 {
-  font-family: "Lato", "Lucida Grande","Lucida Sans Unicode", Tahoma, Sans-Serif;
   text-align: center; 
   margin-bottom: 1em;
   font-weight: 800;
@@ -64,10 +65,11 @@ h2 {
 }
 
 #login-c6ab6f67 {
-  padding: 15px;
   margin: auto; 
   text-align: center;
+  width: 230px;
 }
+
 
 button {
   margin-top: 25px;

@@ -15,6 +15,10 @@
 
 			eventHandlers();
 
+			$('.facebook-provider').css("width", '300px' );
+			$('.gplus-provider').css("width", '300px' );
+			$('.twitter-provider').css("width", '300px' );
+			$('.linkedin-provider').css("width", '300px' );
 		};
 
 		var e = document.createElement('script'); e.type = 'text/javascript';
@@ -31,24 +35,20 @@
 
 	var handler = function(response) {
 	   if (response.status == "success") {
-		    console.log("Data:", response.data);
+		    console.log("Success");
 	   } else {
-	    	alert("Could not get info from the current logged in user.");
+	    	console.log("Could not get info from the current logged in user.");
 	   }
 	}
 
 	// add event handlers
    function eventHandlers() {
+   	 // SUCESS
      socialid.events.onLoginSuccess.addHandler(function(data) {
 
-        $('.jumbotron').addClass('animated fadeOutRight');
+       $('.jumbotron').addClass('fadeOutRight');
         
-       // console.log("Website received onLoginSuccess: ", data);
-
-       // SO QUERO SALVAR ESSA VARIAVEL !!!
        var token = data.token;
-
-       console.log(token);
 
        $.post('/login',{token:token},function(data){        
             if(data ==='done')           
@@ -57,6 +57,7 @@
             }
         });
      });
+
 
      socialid.events.onLoginCancel.addHandler(function(data) {
        // console.log("Website received onLoginCancel: ", data);
