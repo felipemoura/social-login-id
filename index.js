@@ -51,7 +51,7 @@ app.post('/login', function(req, res) {
 app.get('/login', function(req, res) {
 	sess = req.session;
 
-	if (sess.token === "") {
+	if (sess.token === null || sess.token === undefined || sess.token === "") {
 		res.redirect('/')
 	} else {
     	res.render('pages/logged.ejs'); // load the index.ejs file   
