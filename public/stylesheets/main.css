@@ -1,0 +1,80 @@
+body {
+  background-color: #43A047;
+  font-family: "Lato", "Lucida Grande","Lucida Sans Unicode", Tahoma, Sans-Serif;
+}
+
+html, body, .container {
+  height: 100%;
+}
+
+.container {
+    display: table;
+    vertical-align: middle;
+}
+
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+.info {
+  font-size: 1.4em;
+  margin: auto;
+  padding: 20px 0;
+}
+
+.elem {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: left;
+  font-weight: 300;
+}
+
+strong {
+  font-size: 1.2em;
+}
+
+.jumbotron {
+  margin:auto; 
+  padding: 70px 0; 
+  width: 50%;
+  max-width: 560px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  text-align: center;
+  border-radius: 12px;
+}
+
+h1 {
+  text-align: center; 
+  margin-bottom: 1em;
+  font-weight: 800;
+}
+
+h2 {
+  font-family: "Lato", "Lucida Grande","Lucida Sans Unicode", Tahoma, Sans-Serif;
+  text-align: center; 
+  margin-bottom: 1em;
+  font-weight: 800;
+  font-size: 3em;
+}
+
+#login-c6ab6f67 {
+  padding: 15px;
+  margin: auto; 
+  text-align: center;
+}
+
+button {
+  margin-top: 25px;
+}
+
+@media (min-width: 650px) {
+  .jumbotron {
+    width: 100%;
+  }
+}

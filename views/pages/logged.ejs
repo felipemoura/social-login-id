@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<% include ../partials/header.ejs %>
+	
+	<title>Social-ID Marketing Platform</title>
+</head>
+<body>
+
+
+<!-- Init  -->
+<div class="container">
+  <div class="vertical-center-row">
+      <div class="jumbotron">
+
+        <h2>Success Login</h2>
+
+        <img src="" class="img-responsive center-block" alt="Profile Picture">
+
+        <div class="row info">
+
+        	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem">
+        		<strong>Nome</strong>
+        	</div>
+        	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem">
+        		<strong>e-mail</strong>
+        	</div>
+
+        	<div id="name" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem"></div>
+        	<div id="email" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem"></div>
+
+        	<br>
+            <br>
+
+        	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem">
+        		<strong>Sexo</strong>
+        	</div>
+        	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem">
+        		<strong>Localização</strong>
+        	</div>
+
+        	<div id="sex" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem"></div>
+        	<div id="location" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 elem"></div>
+
+            <button id="logout" type="button" value="submit" class="btn btn-danger btn-block">Log out</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+    $('#logout').on('click', function() {
+        $.post("/logout").then(function(data) {
+            window.location = data.redirectUrl;
+        });
+    });
+</script>
+
+
+</body>
+</html>

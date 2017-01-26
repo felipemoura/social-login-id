@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/header.ejs %>
+    
+    <title>Social-ID Marketing Platform</title>
+
+    <script> 
+	(function() {
+		if (typeof(window.socialid) !== "object") window.socialid = {};
+		socialid.onLoad = function() {
+			socialid.login.init(372, {loginType: "event"}); 
+			socialid.login.renderLoginWidget("login-c6ab6f67",
+				{"providers":["facebook","gplus","twitter","linkedin"],"theme":"bricks","showSocialIdLink":true} );
+
+			eventHandlers();
+
+		};
+
+		var e = document.createElement('script'); e.type = 'text/javascript';
+		e.id = 'socialid_api_script';
+		if (document.location.protocol === 'https:') {
+			e.src = 'https://staging.socialidnow.com/assets/api/socialid.js'; 
+		} else {
+			e.src = 'http://staging.socialidnow.com/assets/api/socialid.js'; 
+		}
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(e, s);
+	})();
+
+
+	var handler = function(response) {
+	   if (response.status == "success") {
+		    console.log("Data:", response.data);
+	   } else {
+	    	alert("Could not get info from the current logged in user.");
+	   }
+	}
+
+	// add event handlers
+   function eventHandlers() {
+     socialid.events.onLoginSuccess.addHandler(function(data) {
+       // console.log("Website received onLoginSuccess: ", data);
+
+       // SO QUERO SALVAR ESSA VARIAVEL !!!
+       var token = data.token;
+
+       console.log(token);
+
+       $.post('/login',{token:token},function(data){        
+            if(data ==='done')           
+            {
+                window.location.href="/login";
+            }
+        });
+     });
+
+     socialid.events.onLoginCancel.addHandler(function(data) {
+       // console.log("Website received onLoginCancel: ", data);
+     });
+
+     socialid.events.onLoginError.addHandler(function(data) {
+       // console.log("Website received onLoginError: ", data);
+     });
+
+     socialid.events.onLoginStart.addHandler(function(data) {
+       // console.log("Website received onLoginStart: ", data);
+     });
+   }
+
+	</script>
+</head>
+<body>
+
+<div class="container">
+  <div class="vertical-center-row">
+	  <div class="jumbotron">
+	    <h1>Login</h1>
+	    <div id="login-c6ab6f67"></div>
+	  </div>
+  </div>
+</div>
+
+</body>
+</html>
