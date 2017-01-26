@@ -24,7 +24,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 
+// variables
 var token = "";
+var page = "https://api-staging.socialidnow.com/v1/marketing/login/info?api_secret=";
+var secret = "24979348df8f970ce19849ad861e215afa8a582f6e2f28f99b549da585e12bfb";
+var middle = "&token=";
+var fields = "&fields=birthday,gender,name,location";
+var info = [];
 
 // Home
 app.get('/',function(req,res){
@@ -33,7 +39,6 @@ app.get('/',function(req,res){
 
 // Post login
 app.post('/login', function(req, res) {
-	// getting token
 	token = req.body.token;
 	res.send('done');
 });
@@ -47,6 +52,15 @@ app.get('/login', function(req, res) {
 	}
 });
 
+app.get('/info', function(req,res) {
+	var options = { url: page+secret+middle+token+fields, include: false };
+
+	curl.request(options, function (err, parts) {
+	    parts = parts.split('\r\n');
+	    info = JSON.parse(parts.pop());
+		res.send(info);
+	});
+});
 
 // LOGOUT ==============================
 app.post('/logout',function(req,res) {
