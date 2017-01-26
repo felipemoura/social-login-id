@@ -17,8 +17,8 @@ app.set('view engine', 'ejs');
 app.use(session({
   cookieName: 'session',
   secret: 'lakesaij123i1osap',
-  duration: 30 * 60 * 1000,
-  activeDuration: 5 * 60 * 1000,
+  duration: 10 * 60 * 1000,
+  activeDuration: 2 * 60 * 1000,
 }));
 
 app.use(bodyParser.json());
@@ -30,6 +30,7 @@ var page = "https://api-staging.socialidnow.com/v1/marketing/login/info?api_secr
 var secret = "24979348df8f970ce19849ad861e215afa8a582f6e2f28f99b549da585e12bfb";
 var middle = "&token=";
 var fields = "&fields=birthday,gender,name,location";
+
 // session
 var sess;
 
@@ -47,7 +48,7 @@ app.post('/login', function(req, res) {
 	res.send('done');
 });
 
-// Login page with info
+// Login page 
 app.get('/login', function(req, res) {
 	sess = req.session;
 
@@ -58,6 +59,8 @@ app.get('/login', function(req, res) {
 	}
 });
 
+
+// INFO ABOUT THE USER
 app.get('/info', function(req,res) {
 	sess = req.session;
 

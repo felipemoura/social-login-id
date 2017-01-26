@@ -40,6 +40,9 @@
 	// add event handlers
    function eventHandlers() {
      socialid.events.onLoginSuccess.addHandler(function(data) {
+
+        $('.jumbotron').addClass('animated fadeOutRight');
+        
        // console.log("Website received onLoginSuccess: ", data);
 
        // SO QUERO SALVAR ESSA VARIAVEL !!!
@@ -74,7 +77,7 @@
 
 <div class="container">
   <div class="vertical-center-row">
-	  <div class="jumbotron">
+	  <div class="jumbotron animated fadeInLeft">
 	    <h1>Login</h1>
 	    <div id="login-c6ab6f67"></div>
 	  </div>
