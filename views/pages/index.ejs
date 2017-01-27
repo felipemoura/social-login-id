@@ -15,6 +15,7 @@
 
 			eventHandlers();
 
+			// stylysh
 			$('.facebook-provider').css("width", '300px' );
 			$('.gplus-provider').css("width", '300px' );
 			$('.twitter-provider').css("width", '300px' );
@@ -48,10 +49,10 @@
    	 // SUCESS
      socialid.events.onLoginSuccess.addHandler(function(data) {
 
+     	// animation
        $('.jumbotron').addClass('fadeOutRight');
         
        var token = data.token;
-
        $.post('/login',{token:token},function(data){        
             if(data ==='done')           
             {
@@ -62,15 +63,15 @@
 
 
      socialid.events.onLoginCancel.addHandler(function(data) {
-       // console.log("Website received onLoginCancel: ", data);
+       console.log("Website received onLoginCancel: ", data);
      });
 
      socialid.events.onLoginError.addHandler(function(data) {
-       // console.log("Website received onLoginError: ", data);
+       console.log("Website received onLoginError: ", data);
      });
 
      socialid.events.onLoginStart.addHandler(function(data) {
-       // console.log("Website received onLoginStart: ", data);
+       console.log("Website received onLoginStart: ", data);
      });
    }
 
